@@ -4,9 +4,12 @@ LDFLAGS = -lglfw -lvulkan -ldl -lpthread -lX11 -lXxf86vm -lXrandr -lXi
 VulkanTest: *.cpp *.hpp
 	g++ $(CFLAGS) -o VulkanTest *.cpp $(LDFLAGS)
 
-.PHONY: test clean
+.PHONY: exec clean shaders
 
-test: VulkanTest
+shaders: VulkanTest
+	./compile.sh
+
+exec: shaders
 	./VulkanTest
 
 clean:
